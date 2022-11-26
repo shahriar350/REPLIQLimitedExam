@@ -7,7 +7,7 @@ from company_app.middlewares import IsCompany
 from company_app.models import EmployeeDeviceLog, EmployeeDevices
 from company_app.serializers import CompanyCreateEmpSerializer, CompanyDeviceSerializer, EmployeeDevicesSerializer, \
     EmployeeReturnDeviceSerializer
-
+from rest_framework.authentication import TokenAuthentication
 
 class CompanyCreateUserView(CreateAPIView):
     serializer_class = CompanyCreateEmpSerializer
@@ -17,16 +17,18 @@ class CompanyCreateUserView(CreateAPIView):
 class CompanyDeviceCreateView(CreateAPIView):
     serializer_class = CompanyDeviceSerializer
     permission_classes = [IsCompany]
-
+    authentication_classes = [TokenAuthentication]
 
 class ProvideDeviceToEmployee(CreateAPIView):
     serializer_class = EmployeeDevicesSerializer
     permission_classes = [IsCompany]
+    authentication_classes = [TokenAuthentication]
 
 
 class ProvideDeviceUpdateToEmployee(CreateAPIView):
     serializer_class = EmployeeReturnDeviceSerializer
     permission_classes = [IsCompany]
+    authentication_classes = [TokenAuthentication]
 
     def create(self, request, *args, **kwargs):
         try:

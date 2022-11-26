@@ -21,3 +21,8 @@ class CompanyCreateSerializer(serializers.Serializer):
                                            password=validated_data.get('password'))
 
         return validated_data
+
+
+class LoginViewSerializer(serializers.Serializer):
+    phone_number = serializers.CharField(max_length=255)
+    password = serializers.CharField(max_length=255)
